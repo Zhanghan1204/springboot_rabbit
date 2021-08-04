@@ -32,5 +32,26 @@ spring:
 实际消息消费失败了,但rabbitMQ以为消费成功,造成消息的丢失,因此采用手动ACK的方式
 
 
+想让confirm和return生效  
+1.在yml中添加配置,开启confirm和return    
+`#开启confirm和return机制
+    publisher-confirm-type: simple   #开启RabbitMQ的confirm机制,老版本的是用的publisher-confirms: true
+    publisher-returns: true   #开启RabbitMQ的return机制`
+2.指定RabbitTemplate对象,开启confirm和return,并编写回调函数
+参考文件:`com.zh.springboot_rabbit.config.ConfirmAndReturnConfig`
 
-
+`#rabbit环境
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: test
+    password: test
+    virtual-host: /test
+    #指定ACK方式
+    listener:
+      simple:
+        acknowledge-mode: manual   #手动方式
+    #开启confirm和return机制
+    publisher-confirm-type: simple   #开启RabbitMQ的confirm机制,老版本的是用的publisher-confirms: true
+    publisher-returns: true   #开启RabbitMQ的return机制`
