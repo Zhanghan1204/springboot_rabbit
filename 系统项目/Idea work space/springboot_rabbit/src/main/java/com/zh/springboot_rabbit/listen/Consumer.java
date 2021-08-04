@@ -30,7 +30,7 @@ public class Consumer {
 
             //3.设置key的value为1,如果想到期消除,那set时,还需将过期时间set进去
             redisTemplate.opsForValue().set(id,"1");
-            //redisTemplate.opsForValue().set(id,"1",10);
+            //redisTemplate.opsForValue().set(id,"1",10, TimeUnit.SECONDS);
 
             //4.手动ACK,手动告诉rabbitMQ已经消费完了
         /*使用手动ACK的原因是:如果采用自动,等一接收到消息的时候,就会给rabbitMQ反馈消费完了,但如果方法中存在异常时,
