@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    //1.创建exchange  采用topic方式
+    //1.创建exchange  采用topic方式  名字任意
     @Bean
     public TopicExchange getTopicExcheng(){
         return new TopicExchange("boot-topic-exchange",true,false);
